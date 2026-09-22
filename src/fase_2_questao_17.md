@@ -1,6 +1,6 @@
 ### questão 17
 
-o código original usa filter, map e reduce. podemos fazer a mesma operação usando apenas um laço for e uma condição if.
+o código original usa filter, map e reduce. podemos fazer a mesma operação usando apenas um laço 'for' e uma condição 'if'.
 
 ```js
 const arr = [10, 15, 22, 34, 45, 60];
