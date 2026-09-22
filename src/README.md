@@ -1,194 +1,211 @@
-# ArrayListJs
+# respostas - questões de array em javascript
 
-Tutorial sobre como manipular listas em Javascript usando map, filter e reduce.
+## fase 1
 
-## O que sao listas
+Questão 1: b) 5 (o ´push(5)´ adiciona um elemento ao array, que passa a ter 5 elementos.)
 
-Listas em Javascript sao chamadas de arrays. Elas podem guardar varios valores em uma unica variavel.
+Questão 2: c) `['maçã', 'banana']` (o `pop()` remove o último elemento do array, que era 'uva'.)
 
-Exemplo:
+Questão 3: a) `[20, 30, 40]` (o `shift()` remove o primeiro elemento, que era `10`.)
 
-```javascript
-const frutas = ["maca", "banana", "laranja"];
+Questão 4: b) `[0, 1, 2, 3]` (o `unshift(0)` adiciona o `0` no início do array.)
 
-console.log(frutas);
-```
+Questão 5: b) `[6, 7]` (o `slice(1)` cria um novo array começando pelo índice `1`.)
 
-Podemos acessar um valor usando sua posicao.
+Questão 6: b) `[1, 4]` (o `splice(1, 2)` começa no índice `1` e remove dois elementos, `2` e `3`.)
 
-```javascript
-const frutas = ["maca", "banana", "laranja"];
+Questão 7: c) 2 (o índice de `'c'` no array é `2`.)
 
-console.log(frutas[0]);
-```
+Questão 8: b) `[2, 4, 6]` (o `map()` divide cada elemento por `2`.)
 
-Resultado:
+Questão 9: c) `[9, 12]` (o `filter()` mantém apenas os números maiores que `6`.)
 
-```javascript
-maca;
-```
+Questão 10: d) 12 (o `reduce()` soma `2 + 4 + 6`, resultando em `12`.)
 
-## Map
+Questão 11: a) true (o `includes()` verifica se `'Lucas'` existe no array e retorna `true`.)
 
-O map e usado para passar por todos os valores de uma lista e criar uma nova lista com os valores modificados.
+Questão 12: c) `'a-b-c'` (o `join('-')` junta os elementos usando `-` como separador.)
 
-Exemplo:
+Questão 13: c) `[1, 2, 3, 4, 5]` (o `concat()` junta os dois arrays.)
 
-```javascript
-const numeros = [1, 2, 3, 4];
+Questão 14: b) `['z', 'y', 'x']` (o `reverse()` inverte a ordem dos elementos.)
 
-const dobro = numeros.map((numero) => numero * 2);
+Questão 15: c) 3 (o `find()` retorna o primeiro número que atende à condição `n > 2`.)
 
-console.log(dobro);
-```
+## fase 2
 
-Resultado:
+### questão 16
+
+o código possui três métodos sendo executados em sequência: filter, map e reduce.
+
+primeiro, o ´filter()´ verifica quais números do array são ímpares. os números ímpares são:
 
 ```javascript
-[2, 4, 6, 8];
+[1, 3, 5];
 ```
 
-Neste exemplo o map pegou cada numero da lista e multiplicou por 2.
-
-Outro exemplo:
+depois, o `map()` multiplica cada número por 3:
 
 ```javascript
-const nomes = ["ana", "joao", "carlos"];
-
-const nomesMaiusculos = nomes.map((nome) => nome.toUpperCase());
-
-console.log(nomesMaiusculos);
+[3, 9, 15];
 ```
 
-Resultado:
+por último, o `reduce()` soma esses valores. como o valor inicial é `10`, a conta fica:
+
+```text
+10 + 3 + 9 + 15 = 37
+```
+
+portanto, o resultado impresso será `37`.
+
+### questão 17
+
+o código original usa `filter`, `map` e `reduce`. podemos fazer a mesma operação usando apenas um laço `for` e uma condição `if`.
 
 ```javascript
-["ANA", "JOAO", "CARLOS"];
+const arr = [10, 15, 22, 34, 45, 60];
+
+let processado = 0;
+
+for (let i = 0; i < arr.length; i++) {
+  if (arr[i] % 3 === 0) {
+    const obj = {
+      original: arr[i],
+      metade: arr[i] / 2,
+    };
+
+    processado += obj.metade;
+  }
+}
+
+console.log(processado);
 ```
 
-## Filter
+o `for` percorre todos os elementos do array.
 
-O filter e usado para selecionar valores de uma lista que atendem a uma condicao.
+o `if` verifica quais números são divisíveis por 3. nesse caso, são `15`, `45` e `60`.
 
-Exemplo:
+depois, é calculada a metade de cada um:
+
+```text
+15 / 2 = 7.5
+45 / 2 = 22.5
+60 / 2 = 30
+```
+
+por fim, os valores são somados:
+
+```text
+7.5 + 22.5 + 30 = 60
+```
+
+portanto, o resultado é `60`.
+
+### questão 18
+
+o `splice()` modifica diretamente o array original. por isso, quando usamos:
 
 ```javascript
-const numeros = [1, 2, 3, 4, 5, 6];
-
-const pares = numeros.filter((numero) => numero % 2 === 0);
-
-console.log(pares);
+lista.splice(1, 2);
 ```
 
-Resultado:
+ele começa no índice `1` e remove dois elementos.
+
+o array original é:
+
+```text
+[4, 8, 12, 16]
+```
+
+os elementos `8` e `12` são removidos.
+
+então `lista` passa a ser:
+
+```text
+[4, 16]
+```
+
+e `r` recebe os elementos removidos:
+
+```text
+[8, 12]
+```
+
+uma forma de evitar a alteração do array original é criar uma cópia antes de usar `splice()`:
 
 ```javascript
-[2, 4, 6];
+const lista = [4, 8, 12, 16];
+
+const copia = lista.slice();
+const r = copia.splice(1, 2);
 ```
 
-Neste exemplo o filter selecionou somente os numeros pares.
+outra forma é utilizar `filter()`, que cria um novo array sem modificar o original.
 
-Outro exemplo:
+### questão 19
+
+podemos usar o `reduce()` para percorrer o array e separar as pessoas de acordo com a propriedade `cidade`.
 
 ```javascript
-const numeros = [5, 10, 15, 20, 25];
+const grupos = pessoas.reduce((acc, pessoa) => {
+  if (!acc[pessoa.cidade]) {
+    acc[pessoa.cidade] = [];
+  }
 
-const maiores = numeros.filter((numero) => numero > 15);
+  acc[pessoa.cidade].push(pessoa);
 
-console.log(maiores);
+  return acc;
+}, {});
 ```
 
-Resultado:
+o `reduce()` começa com um objeto vazio.
 
-```javascript
-[20, 25];
+para cada pessoa, verificamos se já existe um grupo para sua cidade. se não existir, criamos um novo grupo.
+
+depois, a pessoa é adicionada ao grupo correspondente.
+
+assim, as pessoas de `sp` ficam juntas, as pessoas de `rj` ficam juntas e as pessoas de `mg` ficam juntas.
+
+o resultado será organizado por cidade, por exemplo:
+
+```text
+sp → ana, bruna
+rj → lucas
+mg → caio
 ```
 
-## Reduce
+### questão 20
 
-O reduce e usado para juntar os valores de uma lista e gerar um unico resultado.
+os métodos `find`, `filter` e `some` verificam uma condição, mas possuem resultados diferentes.
 
-Exemplo:
+`find` retorna o primeiro elemento que atende à condição. nesse caso, o primeiro `8`:
 
-```javascript
-const numeros = [1, 2, 3, 4, 5];
-
-const soma = numeros.reduce((total, numero) => total + numero, 0);
-
-console.log(soma);
+```text
+a = 8
 ```
 
-Resultado:
+`filter` retorna todos os elementos que atendem à condição dentro de um novo array. como existem dois `8`:
 
-```javascript
-15;
+```text
+b = [8, 8]
 ```
 
-Neste exemplo o reduce somou todos os numeros da lista.
+`some` apenas verifica se existe pelo menos um elemento que atende à condição. como existe `8`, o resultado é:
 
-Outro exemplo:
-
-```javascript
-const numeros = [10, 20, 30];
-
-const soma = numeros.reduce((total, numero) => total + numero, 0);
-
-console.log(soma);
+```text
+c = true
 ```
 
-Resultado:
+portanto, o resultado final é:
 
-```javascript
-60;
+```text
+8 [8, 8] true
 ```
 
-## Usando map filter e reduce
+de forma simples:
 
-Os tres metodos tambem podem ser usados juntos.
-
-Exemplo:
-
-```javascript
-const numeros = [1, 2, 3, 4, 5, 6];
-
-const resultado = numeros
-  .filter((numero) => numero % 2 === 0)
-  .map((numero) => numero * 2)
-  .reduce((total, numero) => total + numero, 0);
-
-console.log(resultado);
+```text
+find   → retorna o primeiro encontrado
+filter → retorna todos os encontrados
+some   → retorna true ou false
 ```
-
-Resultado:
-
-```javascript
-24;
-```
-
-Neste exemplo:
-
-O filter pega os numeros pares.
-
-O map multiplica os numeros por 2.
-
-O reduce soma os resultados.
-
-## Resumo
-
-map
-
-Usado para modificar os valores de uma lista.
-
-filter
-
-Usado para selecionar valores de uma lista.
-
-reduce
-
-Usado para juntar os valores de uma lista e gerar um resultado.
-
-## Conclusao
-
-Os metodos map, filter e reduce facilitam o trabalho com listas em Javascript.
-
-Eles podem ser usados separadamente ou juntos para realizar diferentes operacoes com os dados de uma lista.
